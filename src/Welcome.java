@@ -29,7 +29,7 @@ public class Welcome extends JPanel{
         JLabel welcomeLabel = new JLabel(logo);
         //布局
         welcomeFrame.getContentPane().add(welcomeLabel);
-        welcomeFrame.setBounds(480,260,500,309);        //黄金分割比 0.618
+        welcomeFrame.setBounds(680,380,500,309);        //黄金分割比 0.618
         welcomeFrame.setUndecorated(true); // 去掉窗口的装饰 //要放在setVisible前面
         welcomeFrame.setVisible(true);
         welcomeFrame.setBackground(new Color(255, 255, 255));

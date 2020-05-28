@@ -27,7 +27,7 @@ public class Log_IO {
     public String[] read(String fileName){
         //不关闭文件会导致资源的泄露
         String [] contents = new String[10000];             //最大一万个任务存储
-        try (FileReader reader = new FileReader(fileName);          /****************BUG预警：需要创建好三个txt文件，否则读取报错，或者可以先执行写入函数，写入 空内容***********/
+        try (FileReader reader = new FileReader(fileName);          /****************需要创建好三个txt文件，否则读取报错，或者可以先执行写入函数，写入 空内容***********/
              BufferedReader br = new BufferedReader(reader) // 建立一个对象，它把文件内容转成计算机能读懂的语言
         ) {
             String line;

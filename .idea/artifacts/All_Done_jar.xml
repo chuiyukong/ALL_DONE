@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="All_Done:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/All_Done_jar</output-path>
+    <root id="root">
+      <element id="archive" name="All_Done.jar">
+        <element id="module-output" name="All_Done" />
+      </element>
+      <element id="library" level="project" name="jl1.0.1" />
+    </root>
+  </artifact>
+</component>

@@ -10,6 +10,11 @@ import java.util.Date;
  * @Version: V1.0
  */
 public class MainFrame extends JFrame{
+
+    public static Color theme_color = theme_color = new Color(102, 143, 215);;            //设置默认主题色
+    public static boolean ToTray = false;                                           //是否最小化到托盘
+    public static boolean isUndecorated = false;                                    //是否隐藏标题栏
+
     public MainFrame(){
         try {
             Thread.sleep(2000);     //等欢迎界面结束在启动主窗体
@@ -19,17 +24,45 @@ public class MainFrame extends JFrame{
         init();
     }
     public void init(){
+
+        /*****************************读取本地配置文件***************************/
+        String [] configs = new Log_IO().read("src/assets/config.txt");
+        //主题
+        if (configs[1].equals("blue")){
+            theme_color = new Color(102, 143, 215);
+        }else if (configs[1].equals("purple")){
+            theme_color = new Color(153, 139, 215);
+        }else if (configs[1].equals("gray")){
+            theme_color = new Color(141, 142, 151);
+        }else if (configs[1].equals("green")){
+            theme_color = new Color(83, 151, 79);
+        }
+        if (configs[2].equals("0")){
+            ToTray = false;
+        }else if (configs[2].equals("1")){
+            ToTray = true;
+        }
+
+        if (configs[3].equals("0")){
+            isUndecorated = false;
+        }else if (configs[3].equals("1")){
+            isUndecorated = true;
+            Panel_Selector.ifExit = true ;
+        }
+
+
         JFrame frame = this;  //将默认的窗口赋值用来传参
-//        frame.setUndecorated(true); // 去掉窗口的标题栏，可以设置一个功能
+        frame.setUndecorated(isUndecorated); // 去掉窗口的标题栏，可以设置一个功能
 
 //        this.getContentPane().setBackground(new Color(102, 143, 215));
         this.setTitle("All Done");
         Image icon = Toolkit.getDefaultToolkit().getImage("src/assets/Icon.png");
         this.setIconImage(icon);
-        this.setBounds(228,90,1050,700);
+        this.setBounds(400,200,1050,700);
         this.setLayout(null);
         this.setDefaultCloseOperation(3);
-        toTray(false,frame);        //传参确定是否最小化到系统托盘
+
+        toTray(ToTray,frame);        //传参确定是否最小化到系统托盘
 
 //        //分割面板//取消分割面板，没啥大用处，还丑
 //        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
@@ -47,7 +80,7 @@ public class MainFrame extends JFrame{
         panel02.setBounds(270,0,780,700);
         panel01.setBackground(new Color(255, 255, 255));        //面板颜色
 
-        Color theme_color = new Color(102, 143, 215);            //设置主题色:蓝色
+//        Color theme_color = new Color(102, 143, 215);            //设置主题色:蓝色
 //        Color theme_color = new Color(188, 149, 215);            //设置主题色:紫色
         panel02.setBackground(theme_color);                              //主题色
         panel02.setLayout(null);                                    //这里不设为null则后面的子组件不能自定义位置
